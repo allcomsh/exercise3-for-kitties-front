@@ -26,8 +26,9 @@ export default function Kitties (props) {
 
     let unsubscribe
     api.query.kittiesModule.kittiesCount(cnt => {
-      if (cnt !== '') {
+      if (cnt !== '' && !isNaN(parseInt(cnt,10))) {
         // The amounts of all kitties.
+//        return;
         const kittyIds = Array.from(Array(parseInt(cnt, 10)), (v, k) => k)
         // The owners of all kitties.
         api.query.kittiesModule.owner.multi(kittyIds, kittyOwners => {
